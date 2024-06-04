@@ -1,0 +1,168 @@
+ЛАБА 4 1
+
+import random
+import string
+
+
+def generate_passwords(n, k):
+    chars = string.ascii_letters + string.digits
+    passwords = []
+    for _ in range(n):
+        password = ''.join(random.choice(chars) for _ in range(k))
+        passwords.append(password)
+    return passwords
+
+num_passwords = 1000
+password_length = 1000
+passwords = generate_passwords(num_passwords, password_length)
+for password in passwords:
+    print(password)
+____________________________________________________________________
+
+2
+
+import random
+
+weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница']
+
+times = ['8:30', '10:30', '12:00', '13:30', '15:00']
+
+ticket_numbers = list(range(1, 21))
+
+
+def generate_exam_info(disciplines):
+    exam_info = []
+    for discipline in disciplines:
+        weekday = random.choice(weekdays)
+        time = random.choice(times)
+        ticket_number = random.choice(ticket_numbers)
+        exam_info.append((discipline, weekday, time, ticket_number))
+    return exam_info
+
+
+num_exams = int(input("Введите количество экзаменов: "))
+discipline_str = input("Введите названия дисциплин через запятую и пробел: ")
+disciplines = discipline_str.split(', ')
+
+exam_info = generate_exam_info(disciplines)
+
+for discipline, weekday, time, ticket_number in exam_info:
+    print(
+        f"Экзамен по дисциплине «{discipline}» состоится в {weekday} время {time}. Ваш счастливый билет N {ticket_number}.")
+_____________________________________________________________________________
+
+3
+
+from datetime import datetime, timedelta
+
+
+def convert_days_to_date(days):
+    today = datetime.now()
+    exam_date = today + timedelta(days=days)
+    return exam_date.strftime("%d.%m.%Y")
+
+days_until_exam = int(input("Введите количество дней до экзамена: "))
+exam_date = convert_days_to_date(days_until_exam)
+print(f"Экзамен состоится {exam_date}")
+__________________________________________________________________________
+
+4
+
+from datetime import datetime, timedelta
+import calendar
+
+def get_lucky_exam_dates(start_date, n):
+    start_date = datetime.strptime(start_date, "%Y/%m/%d")
+    lucky_dates = []
+
+    while len(lucky_dates) < 5:
+        if start_date.weekday() != 0 and start_date.day % 4 != 0:
+            lucky_dates.append(start_date.strftime("%d %b, %A"))
+        start_date += timedelta(days=n)
+
+    return lucky_dates
+
+start_date = input("Введите исходную дату экзамена (YYYY/MM/DD): ")
+n = int(input("Введите интервал между датами в днях: "))
+
+lucky_dates = get_lucky_exam_dates(start_date, n)
+for date in lucky_dates:
+    print(date)
+_________________________________________________________________________
+
+5
+
+import lab45
+
+print(lab45.description())
+print(f"Квадрат числа 5 равен: {lab45.square(5)}")
+print(f"Число 7 четное? {lab45.is_even(7)}")
+print(f"Число 8 четное? {lab45.is_even(8)}")
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+def description():
+    return
+def square(x):
+    return x ** 2
+def is_even(x):
+    return x % 2 == 0
+___________________________________________________________________________
+
+6
+
+import fill_list
+
+N = int(input("Введите размер списка: "))
+K = int(input("Введите значение для заполнения: "))
+
+A = [None] * N
+
+print(f"Нужно заполнить {N} элементов списка.")
+
+A = fill_list.fill_list(A, N, K)
+
+print("Результирующий список:", A)
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+def fill_list(A, N, K):
+    for i in range(N):
+        A[i] = K
+    return A
+___________________________________________________________________________
+
+7
+
+import digit_sum
+
+N = int(input("Введите количество чисел: "))
+
+numbers = []
+
+print("Введите числа:")
+for _ in range(N):
+    num = int(input())
+    numbers.append(num)
+
+max_num = digit_sum.max_digit_sum_number(numbers)
+
+print(f"Число с максимальной суммой цифр: {max_num}")
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+def sum_of_digits(num):
+    total = 0
+    while num > 0:
+        total += num % 10
+        num //= 10
+    return total
+def max_digit_sum_number(numbers):
+    max_sum = 0
+    max_num = None
+    for num in numbers:
+        digit_sum = sum_of_digits(num)
+        if digit_sum > max_sum:
+            max_sum = digit_sum
+            max_num = num
+    return max_num
