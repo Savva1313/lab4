@@ -19,7 +19,7 @@ for password in passwords:
     print(password)
 ____________________________________________________________________
 
-2
+задание 2
 
 import random
 
@@ -51,7 +51,7 @@ for discipline, weekday, time, ticket_number in exam_info:
         f"Экзамен по дисциплине «{discipline}» состоится в {weekday} время {time}. Ваш счастливый билет N {ticket_number}.")
 _____________________________________________________________________________
 
-3
+задание 3
 
 from datetime import datetime, timedelta
 
@@ -66,7 +66,7 @@ exam_date = convert_days_to_date(days_until_exam)
 print(f"Экзамен состоится {exam_date}")
 __________________________________________________________________________
 
-4
+задание 4
 
 from datetime import datetime, timedelta
 import calendar
@@ -90,7 +90,7 @@ for date in lucky_dates:
     print(date)
 _________________________________________________________________________
 
-5
+задание 5
 
 import lab45
 
@@ -109,7 +109,7 @@ def is_even(x):
     return x % 2 == 0
 ___________________________________________________________________________
 
-6
+задание 6
 
 import fill_list
 
@@ -132,7 +132,7 @@ def fill_list(A, N, K):
     return A
 ___________________________________________________________________________
 
-7
+задание 7
 
 import digit_sum
 
